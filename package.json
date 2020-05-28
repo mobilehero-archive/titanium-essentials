@@ -1,0 +1,53 @@
+{
+	"name": "@titanium/essentials",
+	"version": "0.0.1",
+	"description": "",
+	"main": "essentials.js",
+	"scripts": {
+		"test": "npm install --ignore-scripts && npm run list",
+		"list": "npm pack && tar -xvzf *.tgz && rm -rf package *.tgz",
+		"prepublishOnly": "git pull && bump",
+		"lint": "eslint . --fix"
+	},
+	"repository": {
+		"type": "git",
+		"url": "github:brentonhouse/titanium-essentials"
+	},
+	"author": {
+		"name": "Brenton House",
+		"email": "brenton.house@gmail.com",
+		"url": "https://brenton.house"
+	},
+	"maintainers": [
+		{
+			"name": "Brenton House",
+			"email": "brenton.house@gmail.com",
+			"url": "https://brenton.house"
+		}
+	],
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/brentonhouse/titanium-essentials/issues"
+	},
+	"homepage": "https://github.com/brentonhouse/titanium-essentials#readme",
+	"keywords": [
+		"titanium",
+		"mobile",
+		"alloy",
+		"turbo",
+		"axway",
+		"appcelerator",
+		"ios",
+		"android",
+		"iphone",
+		"ipad",
+		"brenton-house"
+	],
+	"dependencies": {},
+	"devDependencies": {
+		"@titanium/eslint-config": "0.0.12",
+		"eslint": "^7.1.0",
+		"eslint-plugin-import": "^2.20.2",
+		"eslint-plugin-jsdoc": "^26.0.0"
+	}
+}
