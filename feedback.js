@@ -2,7 +2,7 @@
 const feedback = {};
 module.exports = feedback;
 
-const FEEDBACK_ENABLED = false;
+const FEEDBACK_ENABLED = true;
 
 feedback.selection = () => {
 	if (FEEDBACK_ENABLED && OS_IOS) {
