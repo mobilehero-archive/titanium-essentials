@@ -1,4 +1,28 @@
-const info = {};
+Ti.Platform.batteryMonitoring = true;
+
+const info = {
+
+	get uptime() {
+		return Ti.Platform.uptime;
+	},
+	get battery_level() {
+		const battery_level = Ti.Platform.batteryLevel;
+		if (battery_level === -1) {
+			return 'Unknown';
+		 }
+
+		return battery_level;
+	},
+	get battery_monitoring() {
+		return Ti.Platform.batteryMonitoring;
+	},
+	set battery_monitoring(value) {
+		Ti.Platform.batteryMonitoring = true;
+	},
+	get available_memory() {
+		return Ti.Platform.availableMemory;
+	},
+};
 module.exports = info;
 
 const _ = require('lodash');
@@ -74,6 +98,7 @@ info.ip_address = Ti.Platform.address;
 info.architecture = Ti.Platform.architecture;
 info.model = Ti.Platform.model;
 
+info.density = Ti.Platform.displayCaps.density;
 info.dpi = Ti.Platform.displayCaps.dpi;
 info.session_id = Ti.App.sessionId;
 
@@ -91,7 +116,7 @@ info.app_deploy_type = Ti.App.deployType;
 // module.exports.id = device.id;
 info.locale = Ti.Platform.locale;
 info.mac_address = Ti.Platform.macaddress;
-info.manufacturer = Ti.Platform.manufacturer;
+info.manufacturer = Ti.Platform.manufacturer || '';
 info.netmask = Ti.Platform.netmask;
 info.os = Ti.Platform.osname;
 info.os_type = Ti.Platform.ostype;
@@ -103,6 +128,8 @@ info.username = Ti.Platform.username;
 info.os_version = Ti.Platform.version;
 info.os_version_major = parseInt(info.os_version.split('.')[0], 10);
 info.os_version_minor = parseInt(info.os_version.split('.')[1], 10);
+
+info.logical_density_factor = Ti.Platform.displayCaps.logicalDensityFactor;
 
 info.app_version = Ti.App.version;
 
@@ -140,21 +167,50 @@ info.model_name = _.get(devices, info.model, info.model);
 info.isIos7Plus = info.isIos && info.os_version_major >= 7;
 info.isIos8Plus = info.isIos && info.os_version_major >= 8;
 
-info.online = Ti.Network.online;
+info.online = !!Ti.Network.online;
 info.network_type = Ti.Network.networkType;
 info.network_type_name = Ti.Network.networkTypeName;
 info.network_change_reason = 'Initial Network Connection';
+
 
 Ti.Network.addEventListener('change', e => {
 	info.network_type_name = e.networkTypeName;
 	info.network_type = e.networkType;
 	info.network_change_reason = e.reason;
-	info.online = e.online;
+
+	info.online = !!e.online;
 
 	turbo.debug(`Ti.Network.onChange: ${JSON.stringify(e, null, 2)}`);
 	turbo.events.fire('network::change');
 	info.online && turbo.events.fire('network::online');
 	!info.online && turbo.events.fire('network::offline');
+});
+
+Ti.Platform.addEventListener('battery', e => {
+
+	const data = { level: e.level };
+
+	switch (e.state) {
+		case Ti.Platform.BATTERY_STATE_CHARGING:
+			data.state = 'charging';
+			break;
+
+		case Ti.Platform.BATTERY_STATE_FULL:
+			data.state = 'full';
+			break;
+
+		case Ti.Platform.BATTERY_STATE_UNPLUGGED:
+			data.state = 'unplugged';
+			break;
+
+		default:
+			data.state = 'unknown';
+
+	}
+
+	turbo.debug(`🦠  battery status change: ${JSON.stringify(data, null, 2)}`);
+
+	turbo.events.fire('battery::changed', data);
 });
 
 
