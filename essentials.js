@@ -1,7 +1,9 @@
+const moment = require('moment');
 
 _.assign(turbo, require('./info'));
 turbo.feedback = require('./feedback');
 turbo.devices = require('./devices');
+
 
 turbo.humanizeBytes = (bytes, b = 2) => {
 	bytes = _.toInteger(parseInt(bytes));
@@ -41,6 +43,7 @@ App Version:  ${turbo.app_version}
 App Deployment Type:  ${turbo.app_version}
 Titanium SDK Version:  ${turbo.titanium_sdk_version}
 Titanium Turbo Version:  ${turbo.app_deploy_type}
+Report Date:  ${moment().utc().format()}
 -------------------------------------------
 Operating System:  ${turbo.platform} ${turbo.os_version}
 Device Model:  ${turbo.model_name}
