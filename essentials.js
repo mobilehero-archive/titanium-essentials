@@ -8,9 +8,30 @@ turbo.humanizeBytes = (bytes, b = 2) => {
 	if (bytes === 0) { return '0 Bytes'; } const c = b < 0 ? 0 : b; const d = Math.floor(Math.log(bytes) / Math.log(1024)); return `${parseFloat((bytes / Math.pow(1024, d)).toFixed(c))} ${[ 'Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB' ][d]}`;
 };
 
+Object.defineProperty(turbo, 'clipboard', {
+	get() {
+		turbo.trace(`📌  you are here → getting clipboard text`);
+		return Ti.UI.Clipboard.getText();
+	},
+	set(text = '') {
+		turbo.trace(`📌  you are here → setting clipboard text`);
+		Ti.UI.Clipboard.setText(text);
+	},
+});
+
+Object.defineProperty(turbo, 'battery_monitoring', {
+	get() {
+		return Ti.Platform.batteryMonitoring;
+	},
+	set(value = false) {
+		turbo.trace(`📌  you are here → setting Ti.Platform.batteryMonitoring: ${value}`);
+		Ti.Platform.batteryMonitoring = value;
+	},
+});
+
 
 turbo.copyDeviceInfoToClipboard = () => {
-
+	turbo.trace(`📌  you are here → copyDeviceInfoToClipboard()`);
 	const info = `
 -------------------------------------------
 App Name:  ${turbo.app_name}
