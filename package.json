@@ -1,6 +1,6 @@
 {
 	"name": "@titanium/essentials",
-	"version": "0.0.6",
+	"version": "0.0.7",
 	"description": "",
 	"main": "essentials.js",
 	"scripts": {
