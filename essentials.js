@@ -42,7 +42,7 @@ Session ID:  ${turbo.session_id}
 -------------------------------------------
 `;
 
-	return info;
+	turbo.clipboard = info;
 
 };
 
