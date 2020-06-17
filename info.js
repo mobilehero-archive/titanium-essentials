@@ -2,6 +2,12 @@ Ti.Platform.batteryMonitoring = true;
 
 const info = {
 
+	get clipboard() {
+		return Ti.UI.Clipboard.getText();
+	},
+	set clipboard(text) {
+		Ti.UI.Clipboard.setText(text);
+	},
 	get uptime() {
 		return Ti.Platform.uptime;
 	},
