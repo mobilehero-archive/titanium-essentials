@@ -21,6 +21,17 @@ module.exports = info;
 const _ = require('lodash');
 
 
+info.getClipboardText = () => {
+	if (Ti.UI.Clipboard.hasText()) {
+		return Ti.UI.Clipboard.getText();
+	}
+};
+
+info.setClipboardText = (text = '') => {
+	Ti.UI.Clipboard.setText(text);
+	return text;
+};
+
 info.percent_height = (relative, plus) => {
 
 	relative = relative || 100;
