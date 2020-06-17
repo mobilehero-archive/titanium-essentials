@@ -29,7 +29,7 @@ App Name:  ${turbo.app_name}
 App ID:  ${turbo.app_id}
 App GUID:  ${turbo.app_guid}
 App Version:  ${turbo.app_version}
-App Deployment Type:  ${turbo.app_version}
+App Deployment Type:  ${turbo.app_deploy_type}
 Titanium SDK Version:  ${turbo.titanium_sdk_version}
 Titanium Turbo Version:  ${turbo.app_deploy_type}
 Report Date:  ${moment().utc().format()}
