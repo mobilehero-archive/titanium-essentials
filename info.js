@@ -118,11 +118,12 @@ info.app_copyright = Ti.App.copyright;
 info.app_publisher = Ti.App.publisher;
 info.app_url = Ti.App.url;
 info.app_deploy_type = Ti.App.deployType;
+info.titanium_sdk_version = Ti.version;
 
 // module.exports.id = device.id;
 info.locale = Ti.Platform.locale;
 info.mac_address = Ti.Platform.macaddress;
-info.manufacturer = Ti.Platform.manufacturer || '';
+info.manufacturer = _.startCase(_.toLower(Ti.Platform.manufacturer || ''));
 info.netmask = Ti.Platform.netmask;
 info.os = Ti.Platform.osname;
 info.os_type = Ti.Platform.ostype;
