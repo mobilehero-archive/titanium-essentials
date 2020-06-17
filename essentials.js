@@ -31,7 +31,7 @@ App GUID:  ${turbo.app_guid}
 App Version:  ${turbo.app_version}
 App Deployment Type:  ${turbo.app_deploy_type}
 Titanium SDK Version:  ${turbo.titanium_sdk_version}
-Titanium Turbo Version:  ${turbo.app_deploy_type}
+Titanium Turbo Version:  ${turbo.version}
 Report Date:  ${moment().utc().format()}
 -------------------------------------------
 Operating System:  ${turbo.platform} ${turbo.os_version}
