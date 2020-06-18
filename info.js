@@ -152,11 +152,16 @@ info.isIphone = info.os === 'iphone';
 info.isIpad = info.os === 'ipad';
 
 // TIBUG: The variable OS_IOS is not working in node_modules
-// info.os_name = OS_IOS ? 'ios' : 'android';
-// info.os_name_full = OS_IOS ? 'iOS' : 'Android';
-
-info.os_name = Titanium.App.iOS ? 'ios' : 'android';
-info.os_name_full = Titanium.App.iOS ? 'iOS' : 'Android';
+info.os_name = info.isIos ? 'ios' : 'android';
+if (info.isIos) {
+	if (this.isIpad && info.os_version_major >= 13) {
+		info.os_name_full = 'iPadOS';
+	} else {
+		info.os_name_full = 'iOS';
+ 	}
+} else {
+	info.os_name_full = 'Android';
+}
 
 if (info.model.endsWith(' (Simulator)')) {
 	info.model = info.model.substring(0, info.model.length - 12);
