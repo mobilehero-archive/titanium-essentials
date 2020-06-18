@@ -97,6 +97,7 @@ info.recalculate = function () {
 };
 
 const devices = require('./devices');
+const manufacturers = require('./manufacturers');
 
 info.ip_address = Ti.Platform.address;
 info.architecture = Ti.Platform.architecture;
@@ -121,7 +122,8 @@ info.titanium_sdk_version = Ti.version;
 // module.exports.id = device.id;
 info.locale = Ti.Platform.locale;
 info.mac_address = Ti.Platform.macaddress;
-info.manufacturer = _.startCase(_.toLower(Ti.Platform.manufacturer || ''));
+// info.manufacturer = _.startCase(_.toLower(Ti.Platform.manufacturer || ''));
+info.manufacturer = _.get(manufacturers, Ti.Platform.manufacturer, _.startCase(_.toLower(Ti.Platform.manufacturer || '')));
 info.netmask = Ti.Platform.netmask;
 info.os = Ti.Platform.osname;
 info.os_type = Ti.Platform.ostype;
@@ -165,6 +167,7 @@ if (info.model.endsWith(' (Simulator)')) {
 
 // const deviceModels = require('./deviceModels');
 info.model_name = _.get(devices, info.model, info.model);
+
 // device.test = deviceModels[device.model];
 
 // console.error(`deviceModels: ${JSON.stringify(deviceModels, null, 2)}`);
