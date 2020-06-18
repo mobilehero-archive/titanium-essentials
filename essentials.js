@@ -34,7 +34,7 @@ Titanium SDK Version:  ${turbo.titanium_sdk_version}
 Titanium Turbo Version:  ${turbo.version}
 Report Date:  ${moment().utc().format()}
 -------------------------------------------
-Operating System:  ${turbo.platform} ${turbo.os_version}
+Operating System:  ${turbo.os_name_full} ${turbo.os_version}
 Device Model:  ${turbo.model_name}
 Device Manufacturer  ${turbo.manufacturer}
 Screen Width:  ${turbo.device_width} dp
