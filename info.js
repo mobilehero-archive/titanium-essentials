@@ -154,7 +154,7 @@ info.isIpad = info.os === 'ipad';
 // TIBUG: The variable OS_IOS is not working in node_modules
 info.os_name = info.isIos ? 'ios' : 'android';
 if (info.isIos) {
-	if (this.isIpad && info.os_version_major >= 13) {
+	if (info.isIpad && info.os_version_major >= 13) {
 		info.os_name_full = 'iPadOS';
 	} else {
 		info.os_name_full = 'iOS';
