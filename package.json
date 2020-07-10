@@ -48,6 +48,6 @@
 		"@titanium/eslint-config": "0.0.14",
 		"eslint": "^7.4.0",
 		"eslint-plugin-import": "^2.22.0",
-		"eslint-plugin-jsdoc": "^26.0.2"
+		"eslint-plugin-jsdoc": "^29.1.3"
 	}
 }
