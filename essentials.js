@@ -1,3 +1,5 @@
+const logger = require('@geek/logger').createLogger('@titanium/essentials', { meta: { filename: __filename } });
+
 const moment = require('moment');
 
 _.assign(turbo, require('./info'));
@@ -15,14 +17,14 @@ Object.defineProperty(turbo, 'battery_monitoring', {
 		return Ti.Platform.batteryMonitoring;
 	},
 	set(value = false) {
-		turbo.trace(`📌  you are here → setting Ti.Platform.batteryMonitoring: ${value}`);
+		logger.trace(`📌  you are here → setting Ti.Platform.batteryMonitoring: ${value}`);
 		Ti.Platform.batteryMonitoring = value;
 	},
 });
 
 
 turbo.copyDeviceInfoToClipboard = () => {
-	turbo.trace(`📌  you are here → copyDeviceInfoToClipboard()`);
+	logger.trace(`📌  you are here → copyDeviceInfoToClipboard()`);
 	const info = `
 -------------------------------------------
 App Name:  ${turbo.app_name}
