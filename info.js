@@ -1,4 +1,5 @@
 const _ = require('lodash');
+const moment = require('moment');
 const logger = require('@geek/logger').createLogger('@titanium/essentials', { meta: { filename: __filename } });
 const devices = require('./devices');
 const manufacturers = require('./manufacturers');
@@ -10,6 +11,9 @@ const info = {
 	get uptime() {
 		return Ti.Platform.uptime;
 	},
+	get uptime_formatted() {
+		return `${moment.duration(Ti.Platform.uptime, 's').humanize()} ago`;
+	},
 	get battery_level() {
 		const battery_level = Ti.Platform.batteryLevel;
 		if (battery_level === -1) {
@@ -18,11 +22,20 @@ const info = {
 
 		return battery_level;
 	},
-	get available_memory() {
+	get device_available_memory() {
 		return Ti.Platform.availableMemory;
+	},
+
+	get device_available_memory_formatted() {
+		return info.humanizeBytes(Ti.Platform.availableMemory);
 	},
 };
 module.exports = info;
+
+info.humanizeBytes = (bytes, b = 2) => {
+	bytes = _.toInteger(parseInt(bytes));
+	if (bytes === 0) { return '0 Bytes'; } const c = b < 0 ? 0 : b; const d = Math.floor(Math.log(bytes) / Math.log(1024)); return `${parseFloat((bytes / Math.pow(1024, d)).toFixed(c))} ${[ 'Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB' ][d]}`;
+};
 
 
 info.getClipboardText = () => {
@@ -124,21 +137,22 @@ info.language_code = info.locale.substring(0, 2);
 info.country_code = info.locale.substring(3, 2);
 info.mac_address = Ti.Platform.macaddress;
 // info.manufacturer = _.startCase(_.toLower(Ti.Platform.manufacturer || ''));
-info.manufacturer = _.get(manufacturers, Ti.Platform.manufacturer, (Ti.Platform.manufacturer || ''));
+info.device_manufacturer = _.get(manufacturers, Ti.Platform.manufacturer, (Ti.Platform.manufacturer || ''));
 info.netmask = Ti.Platform.netmask;
 info.os = Ti.Platform.osname;
 info.os_type = Ti.Platform.ostype;
 info.platform = Ti.Platform.name;
-info.processor_count = Ti.Platform.processorCount;
+info.device_processor_count = Ti.Platform.processorCount;
 info.runtime = Ti.Platform.runtime;
-info.total_memory = Ti.Platform.totalMemory;
+info.device_total_memory = Ti.Platform.totalMemory;
+info.device_total_memory_formatted = info.humanizeBytes(info.device_total_memory);
 info.username = Ti.Platform.username;
 info.os_version = Ti.Platform.version;
 info.os_version_major = parseInt(info.os_version.split('.')[0], 10) || 0;
 info.os_version_minor = parseInt(info.os_version.split('.')[1], 10) || 0;
 info.os_version_build = parseInt(info.os_version.split('.')[2], 10) || 0;
 
-info.logical_density_factor = Ti.Platform.displayCaps.logicalDensityFactor;
+info.device_logical_density_factor = Ti.Platform.displayCaps.logicalDensityFactor;
 
 info.app_version = Ti.App.version;
 info.app_version_major = parseInt(info.app_version.split('.')[0], 10) || 0;

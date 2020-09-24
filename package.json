@@ -1,6 +1,6 @@
 {
 	"name": "@titanium/essentials",
-	"version": "0.0.30",
+	"version": "0.0.31",
 	"description": "Essential Toolkit for Titanium Turbo Native Mobile Apps",
 	"main": "essentials.js",
 	"scripts": {
