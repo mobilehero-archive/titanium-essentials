@@ -1,7 +1,7 @@
 {
 	"name": "@titanium/essentials",
-	"version": "0.0.29",
-	"description": "",
+	"version": "0.0.30",
+	"description": "Essential Toolkit for Titanium Turbo Native Mobile Apps",
 	"main": "essentials.js",
 	"scripts": {
 		"test": "npm install --ignore-scripts && npm run list",
@@ -48,7 +48,8 @@
 		"@titanium/eslint-config": "0.0.17",
 		"eslint": "^7.9.0",
 		"eslint-plugin-import": "^2.22.0",
-		"eslint-plugin-jsdoc": "^26.0.2"
+		"eslint-plugin-jsdoc": "^26.0.2",
+		"fs-extra": "^9.0.1"
 	},
 	"peerDependencies": {
 		"@geek/logger": "^1.0.0"

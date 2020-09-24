@@ -1,5 +1,8 @@
 const _ = require('lodash');
 const logger = require('@geek/logger').createLogger('@titanium/essentials', { meta: { filename: __filename } });
+const devices = require('./devices');
+const manufacturers = require('./manufacturers');
+
 
 Ti.Platform.batteryMonitoring = true;
 
@@ -95,16 +98,12 @@ info.recalculate = function () {
 	}
 
 };
-
-const devices = require('./devices');
-const manufacturers = require('./manufacturers');
-
 info.ip_address = Ti.Platform.address;
-info.architecture = Ti.Platform.architecture;
-info.model = Ti.Platform.model;
+info.device_architecture = Ti.Platform.architecture;
+info.device_model = Ti.Platform.model;
 
-info.density = Ti.Platform.displayCaps.density;
-info.dpi = Ti.Platform.displayCaps.dpi;
+info.device_density = Ti.Platform.displayCaps.density;
+info.device_dpi = Ti.Platform.displayCaps.dpi;
 info.session_id = Ti.App.sessionId;
 
 info.device_id = Ti.Platform.id;
@@ -159,8 +158,8 @@ if (info.isFirstLaunchEver) {
 	Ti.App.Properties.setString('turbo.app_first_installed_version', info.app_version);
 }
 
-info.isFirstLaunchForMajorVersion = !_.find(app_version_history, v => v.startsWith(`${info.app_version_major}.`));
-info.isFirstLaunchForMinorVersion = !_.find(app_version_history, v => v.startsWith(`${info.app_version_major}.${info.app_version_minor}.`));
+info.isFirstLaunchForMajorVersion = !_.find(_.keys(app_version_history), v => v.startsWith(`${info.app_version_major}.`));
+info.isFirstLaunchForMinorVersion = !_.find(_.keys(app_version_history), v => v.startsWith(`${info.app_version_major}.${info.app_version_minor}.`));
 
 
 if (info.isFirstLaunchForCurrentVersion) {
@@ -169,13 +168,13 @@ if (info.isFirstLaunchForCurrentVersion) {
 }
 
 if (info.isFirstLaunchAfterUpdate) {
-	Ti.App.Properties.setString('turbo.app-version-previous', app_version_current);
-	Ti.App.Properties.setString('turbo.app-version-current', info.app_version);
+	Ti.App.Properties.setString('turbo.app_version_previous', app_version_current);
 }
+
+Ti.App.Properties.setString('turbo.app_version_current', info.app_version);
 
 info.app_version_history = app_version_history;
 info.app_version_previous = app_version_previous;
-
 
 info.app_display_name = Ti.App.Properties.getString('app-display-name', info.app_name);
 
@@ -202,22 +201,24 @@ if (info.isIos) {
 	info.os_name_full = 'Android';
 }
 
-if (info.model.endsWith(' (Simulator)')) {
-	info.model = info.model.substring(0, info.model.length - 12);
+if (info.device_model.endsWith(' (Simulator)')) {
+	info.device_model = info.device_model.substring(0, info.device_model.length - 12);
 	info.isVirtual = true;
 } else {
-	info.isVirtual = info.model === 'Simulator' || info.model.indexOf('sdk') !== -1;
+	info.isVirtual = info.device_model === 'Simulator' || info.device_model.indexOf('sdk') !== -1;
 }
 
-// const deviceModels = require('./deviceModels');
-info.model_name = _.get(devices, info.model, info.model);
 
-// device.test = deviceModels[device.model];
-
-// console.error(`deviceModels: ${JSON.stringify(deviceModels, null, 2)}`);
+info.device_model_name = _.get(devices, info.device_model, info.device_model);
 
 info.isIos7Plus = info.isIos && info.os_version_major >= 7;
 info.isIos8Plus = info.isIos && info.os_version_major >= 8;
+info.isIos9Plus = info.isIos && info.os_version_major >= 9;
+info.isIos10Plus = info.isIos && info.os_version_major >= 10;
+info.isIos11Plus = info.isIos && info.os_version_major >= 11;
+info.isIos12Plus = info.isIos && info.os_version_major >= 12;
+info.isIos13Plus = info.isIos && info.os_version_major >= 13;
+info.isIos14Plus = info.isIos && info.os_version_major >= 14;
 
 info.online = !!Ti.Network.online;
 info.network_type = Ti.Network.networkType;
