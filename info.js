@@ -165,7 +165,7 @@ info.isFirstLaunchForMinorVersion = !_.find(app_version_history, v => v.startsWi
 
 if (info.isFirstLaunchForCurrentVersion) {
 	app_version_history[info.app_version] = new Date().toISOString();
-	Ti.App.Properties.setObject('turbo.app_build_history', app_version_history);
+	Ti.App.Properties.setObject('turbo.app_version_history', app_version_history);
 }
 
 if (info.isFirstLaunchAfterUpdate) {
