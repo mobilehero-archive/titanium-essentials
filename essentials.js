@@ -1,5 +1,8 @@
 const logger = require('@geek/logger').createLogger('@titanium/essentials', { meta: { filename: __filename } });
 
+// ---------------------------------------------------------
+//    Configure Event Emitter
+// ---------------------------------------------------------
 if (!turbo.events) {
 	const EventEmitter = require('events');
 	turbo.events = new EventEmitter({
