@@ -1,3 +1,4 @@
+const _ = require('lodash');
 Ti.Platform.batteryMonitoring = true;
 
 const info = {
@@ -17,8 +18,6 @@ const info = {
 	},
 };
 module.exports = info;
-
-const _ = require('lodash');
 
 
 info.getClipboardText = () => {
@@ -57,7 +56,6 @@ info.percent_width = (relative, plus) => {
 		return info.platform_width * (relative / 100);
 	} else {
 
-		// const pointDp = measurement.pointPXToDP(relative);
 		const px = info.platform_width * (relative / 100);
 		const calcDp = Math.round(px / (info.dpi / 160));
 		return (calcDp + parseInt(plus));
@@ -135,12 +133,47 @@ info.runtime = Ti.Platform.runtime;
 info.total_memory = Ti.Platform.totalMemory;
 info.username = Ti.Platform.username;
 info.os_version = Ti.Platform.version;
-info.os_version_major = parseInt(info.os_version.split('.')[0], 10);
-info.os_version_minor = parseInt(info.os_version.split('.')[1], 10);
+info.os_version_major = parseInt(info.os_version.split('.')[0], 10) || 0;
+info.os_version_minor = parseInt(info.os_version.split('.')[1], 10) || 0;
+info.os_version_build = parseInt(info.os_version.split('.')[2], 10) || 0;
 
 info.logical_density_factor = Ti.Platform.displayCaps.logicalDensityFactor;
 
 info.app_version = Ti.App.version;
+info.app_version_major = parseInt(info.app_version.split('.')[0], 10) || 0;
+info.app_version_minor = parseInt(info.app_version.split('.')[1], 10) || 0;
+info.app_version_build = parseInt(info.app_version.split('.')[2], 10) || 0;
+
+const app_version_previous = Ti.App.Properties.getString('turbo.app_version_previous');
+const app_first_installed_version = Ti.App.Properties.getString('turbo.app_first_installed_version');
+const app_version_current = Ti.App.Properties.getString('turbo.app_version_current');
+const app_version_history = Ti.App.Properties.getObject('turbo.app_version_history', {});
+
+turbo.isFirstLaunchEver = !app_first_installed_version;
+turbo.isFirstLaunchForCurrentVersion = !app_version_history[info.app_version];
+turbo.isFirstLaunchAfterUpdate = (app_version_previous && info.app_version !== app_version_current);
+
+if (turbo.isFirstLaunchEver) {
+	Ti.App.Properties.setString('turbo.app_first_installed_version', info.app_version);
+}
+
+turbo.isFirstLaunchForMajorVersion = !_.find(app_version_history, v => v.startsWith(`${info.app_version_major}.`));
+turbo.isFirstLaunchForMinorVersion = !_.find(app_version_history, v => v.startsWith(`${info.app_version_major}.${info.app_version_minor}.`));
+
+
+if (turbo.isFirstLaunchForCurrentVersion) {
+	app_version_history[info.app_version] = new Date().toISOString();
+	Ti.App.Properties.setObject('turbo.app_build_history', app_version_history);
+}
+
+if (turbo.isFirstLaunchAfterUpdate) {
+	Ti.App.Properties.setString('turbo.app_version_previous', app_version_current);
+	Ti.App.Properties.setString('turbo.app_version_current', info.app_version);
+}
+
+turbo.app_version_history = app_version_history;
+turbo.app_version_previous = app_version_previous;
+
 
 // device.identifierForAdvertising  = device.ios ? Ti.Platform.identifierForAdvertising : device.id;
 info.advertising_id  = Ti.Platform.identifierForAdvertising;
