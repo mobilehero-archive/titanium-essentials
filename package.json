@@ -1,6 +1,6 @@
 {
 	"name": "@titanium/essentials",
-	"version": "0.0.28",
+	"version": "0.0.29",
 	"description": "",
 	"main": "essentials.js",
 	"scripts": {
@@ -51,6 +51,6 @@
 		"eslint-plugin-jsdoc": "^26.0.2"
 	},
 	"peerDependencies": {
-		"@geek/logger": "*"
+		"@geek/logger": "^1.0.0"
 	}
 }
