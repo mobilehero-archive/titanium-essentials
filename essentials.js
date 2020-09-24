@@ -1,11 +1,21 @@
 const logger = require('@geek/logger').createLogger('@titanium/essentials', { meta: { filename: __filename } });
 
-const moment = require('moment');
+if (!turbo.events) {
+	const EventEmitter = require('events');
+	turbo.events = new EventEmitter({
+		wildcard:          true,  // set this to `true` to use wildcards
+		newListener:       true,  // set this to `true` if you want to emit the newListener event
+		removeListener:    true,  // set this to `true` if you want to emit the removeListener event
+		delimiter:         '::',  // the delimiter used to segment namespaces
+		maxListeners:      20,  // the maximum amount of listeners that can be assigned to an event
+		verboseMemoryLeak: false,  // show event name in memory leak message when more than maximum amount of listeners is assigned
+		ignoreErrors:      true, // disable throwing uncaughtException if an error event is emitted and it has no listeners
+	});
+}
 
 _.assign(turbo, require('./info'));
 turbo.feedback = require('./feedback');
 turbo.devices = require('./devices');
-
 
 turbo.humanizeBytes = (bytes, b = 2) => {
 	bytes = _.toInteger(parseInt(bytes));
@@ -34,7 +44,7 @@ App Version:  ${turbo.app_version}
 App Deployment Type:  ${turbo.app_deploy_type}
 Titanium SDK Version:  ${turbo.titanium_sdk_version}
 Titanium Turbo Version:  ${turbo.version}
-Report Date:  ${moment().utc().format()}
+Report Date:  ${new Date().toISOString()}
 -------------------------------------------
 Operating System:  ${turbo.os_name_full} ${turbo.os_version}
 Device Model:  ${turbo.model_name}
