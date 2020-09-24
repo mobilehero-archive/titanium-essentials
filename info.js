@@ -151,31 +151,33 @@ const app_first_installed_version = Ti.App.Properties.getString('turbo.app_first
 const app_version_current = Ti.App.Properties.getString('turbo.app_version_current');
 const app_version_history = Ti.App.Properties.getObject('turbo.app_version_history', {});
 
-turbo.isFirstLaunchEver = !app_first_installed_version;
-turbo.isFirstLaunchForCurrentVersion = !app_version_history[info.app_version];
-turbo.isFirstLaunchAfterUpdate = (app_version_previous && info.app_version !== app_version_current);
+info.isFirstLaunchEver = !app_first_installed_version;
+info.isFirstLaunchForCurrentVersion = !app_version_history[info.app_version];
+info.isFirstLaunchAfterUpdate = (app_version_previous && info.app_version !== app_version_current);
 
-if (turbo.isFirstLaunchEver) {
+if (info.isFirstLaunchEver) {
 	Ti.App.Properties.setString('turbo.app_first_installed_version', info.app_version);
 }
 
-turbo.isFirstLaunchForMajorVersion = !_.find(app_version_history, v => v.startsWith(`${info.app_version_major}.`));
-turbo.isFirstLaunchForMinorVersion = !_.find(app_version_history, v => v.startsWith(`${info.app_version_major}.${info.app_version_minor}.`));
+info.isFirstLaunchForMajorVersion = !_.find(app_version_history, v => v.startsWith(`${info.app_version_major}.`));
+info.isFirstLaunchForMinorVersion = !_.find(app_version_history, v => v.startsWith(`${info.app_version_major}.${info.app_version_minor}.`));
 
 
-if (turbo.isFirstLaunchForCurrentVersion) {
+if (info.isFirstLaunchForCurrentVersion) {
 	app_version_history[info.app_version] = new Date().toISOString();
 	Ti.App.Properties.setObject('turbo.app_build_history', app_version_history);
 }
 
-if (turbo.isFirstLaunchAfterUpdate) {
-	Ti.App.Properties.setString('turbo.app_version_previous', app_version_current);
-	Ti.App.Properties.setString('turbo.app_version_current', info.app_version);
+if (info.isFirstLaunchAfterUpdate) {
+	Ti.App.Properties.setString('turbo.app-version-previous', app_version_current);
+	Ti.App.Properties.setString('turbo.app-version-current', info.app_version);
 }
 
-turbo.app_version_history = app_version_history;
-turbo.app_version_previous = app_version_previous;
+info.app_version_history = app_version_history;
+info.app_version_previous = app_version_previous;
 
+
+info.app_display_name = Ti.App.Properties.getString('app-display-name', info.app_name);
 
 // device.identifierForAdvertising  = device.ios ? Ti.Platform.identifierForAdvertising : device.id;
 info.advertising_id  = Ti.Platform.identifierForAdvertising;
