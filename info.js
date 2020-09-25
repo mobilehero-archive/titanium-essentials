@@ -22,6 +22,14 @@ const info = {
 
 		return battery_level;
 	},
+	get battery_level_formatted() {
+		const battery_level = Ti.Platform.batteryLevel;
+		if (battery_level === -1) {
+			return 'Unknown';
+		 }
+
+		return `${parseFloat(battery_level).toFixed(2)}%`;
+	},
 	get device_available_memory() {
 		return Ti.Platform.availableMemory;
 	},

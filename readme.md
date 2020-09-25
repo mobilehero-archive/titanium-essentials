@@ -122,6 +122,7 @@ require('@titanium/essentials');
 * [x] device_available_memory
 * [x] device_available_memory_formatted
 * [x] battery_level
+* [x] battery_level_formatted
 * [x] uptime
 * [x] uptime_formatted
 
