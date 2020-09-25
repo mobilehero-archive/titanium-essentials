@@ -28,7 +28,7 @@ const info = {
 			return 'Unknown';
 		 }
 
-		return `${parseFloat(battery_level).toFixed(2)}%`;
+		return `${parseFloat(battery_level * 100).toFixed(2)}%`;
 	},
 	get device_available_memory() {
 		return Ti.Platform.availableMemory;
