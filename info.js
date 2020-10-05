@@ -188,7 +188,6 @@ if (info.isFirstLaunchForCurrentVersion) {
 
 if (info.isFirstLaunchAfterUpdate) {
 	Ti.App.Properties.setString('turbo.app_version_previous', app_version_current);
-	info.app_version_previous = app_version_current;
 }
 
 Ti.App.Properties.setString('turbo.app_version_current', info.app_version);
@@ -237,8 +236,11 @@ info.isIos9Plus = info.isIos && info.os_version_major >= 9;
 info.isIos10Plus = info.isIos && info.os_version_major >= 10;
 info.isIos11Plus = info.isIos && info.os_version_major >= 11;
 info.isIos12Plus = info.isIos && info.os_version_major >= 12;
+info.isIos12 = info.isIos && info.os_version_major === 12;
 info.isIos13Plus = info.isIos && info.os_version_major >= 13;
+info.isIos13 = info.isIos && info.os_version_major === 13;
 info.isIos14Plus = info.isIos && info.os_version_major >= 14;
+info.isIos14 = info.isIos && info.os_version_major === 14;
 
 info.online = !!Ti.Network.online;
 info.network_type = Ti.Network.networkType;
