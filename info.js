@@ -188,6 +188,7 @@ if (info.isFirstLaunchForCurrentVersion) {
 
 if (info.isFirstLaunchAfterUpdate) {
 	Ti.App.Properties.setString('turbo.app_version_previous', app_version_current);
+	info.app_version_previous = app_version_current;
 }
 
 Ti.App.Properties.setString('turbo.app_version_current', info.app_version);
