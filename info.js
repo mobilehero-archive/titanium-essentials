@@ -171,7 +171,8 @@ const app_version_history = Ti.App.Properties.getObject('turbo.app_version_histo
 
 info.isFirstLaunchEver = !app_first_installed_version;
 info.isFirstLaunchForCurrentVersion = !app_version_history[info.app_version];
-info.isFirstLaunchAfterUpdate = !!app_version_previous && (info.app_version !== app_version_current);
+// info.isFirstLaunchAfterUpdate = !!app_version_previous && (info.app_version !== app_version_current);
+info.isFirstLaunchAfterUpdate = !!app_version_current && (info.app_version !== app_version_current);
 
 if (info.isFirstLaunchEver) {
 	Ti.App.Properties.setString('turbo.app_first_installed_version', info.app_version);
