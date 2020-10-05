@@ -68,22 +68,19 @@ info.percent_height = (relative, plus) => {
 
 		// const pointDp = measurement.pointPXToDP(relative);
 		const px = info.platform_height * (relative / 100);
-		const calcDp = Math.round(px / (info.dpi / 160));
+		const calcDp = Math.round(px / (info.device_dpi / 160));
 		return (calcDp + parseInt(plus));
 	}
 };
 
-info.percent_width = (relative, plus) => {
-
-	relative = relative || 100;
-	plus = plus || 0;
+info.percent_width = (relative = 100, plus = 0) => {
 
 	if (info.isIos) {
 		return info.platform_width * (relative / 100);
 	} else {
 
 		const px = info.platform_width * (relative / 100);
-		const calcDp = Math.round(px / (info.dpi / 160));
+		const calcDp = Math.round(px / (info.device_dpi / 160));
 		return (calcDp + parseInt(plus));
 	}
 };
