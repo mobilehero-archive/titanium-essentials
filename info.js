@@ -287,7 +287,7 @@ Ti.Platform.addEventListener('battery', e => {
 
 	}
 
-	logger.debug(`🦠  battery status change: ${JSON.stringify(data, null, 2)}`);
+	logger.verbose(`🦠  battery status change: ${JSON.stringify(data, null, 2)}`);
 
 	turbo.events.fire('battery::changed', data);
 });
