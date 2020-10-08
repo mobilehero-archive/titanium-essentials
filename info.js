@@ -136,6 +136,9 @@ info.app_url = Ti.App.url;
 info.app_deploy_type = Ti.App.deployType;
 info.titanium_sdk_version = Ti.version;
 
+info.isProduction = (info.app_deploy_type === 'production');
+info.isDevelopment = (info.app_deploy_type === 'development');
+
 // module.exports.id = device.id;
 info.locale = Ti.Platform.locale;
 info.language_code = info.locale.substring(0, 2);
