@@ -33,9 +33,10 @@ Object.defineProperty(turbo, 'battery_monitoring', {
 
 turbo.copyDeviceInfoToClipboard = () => {
 	logger.trace(`📌  you are here → copyDeviceInfoToClipboard()`);
-	const info = `
+	let info = `
 -------------------------------------------
 App Name:  ${turbo.app_name}
+App Display Name:  ${turbo.app_display_name}
 App ID:  ${turbo.app_id}
 App GUID:  ${turbo.app_guid}
 App Version:  ${turbo.app_version}
@@ -47,6 +48,7 @@ Report Date:  ${new Date().toISOString()}
 Operating System:  ${turbo.os_name_full} ${turbo.os_version}
 Device Model:  ${turbo.device_model_name}
 Device Manufacturer  ${turbo.device_manufacturer}
+Virtual Device:  ${turbo.isVirtual}
 Screen Width:  ${turbo.device_width} dp
 Screen Height:  ${turbo.device_height} dp
 Screen DPI:  ${turbo.dpi}
@@ -59,11 +61,27 @@ Network Type:  ${turbo.network_type_name}
 Network Online:  ${turbo.online.toString()}
 Battery Level:  ${turbo.battery_level}
 Locale:  ${turbo.locale}
+Language Code:  ${turbo.language_code}
+Country Code:  ${turbo.country_code}
 Device ID:  ${turbo.device_id}
 Install ID:  ${turbo.install_id}
 Session ID:  ${turbo.session_id}
--------------------------------------------
+Advertising ID:  ${turbo.advertising_id}
+Vendor ID:  ${turbo.vendor_id}
+First Launch Ever: ${turbo.isFirstLaunchEver}
+First Launch After Update: ${turbo.isFirstLaunchAfterUpdate}
+First Launch Current Version: ${turbo.isFirstLaunchForCurrentVersion}
+First Launch For Major Version: ${turbo.isFirstLaunchForMajorVersion}
+First Launch For Minor Version: ${turbo.isFirstLaunchForMinorVersion}
+Previous Version: ${turbo.app_version_previous}
+Install History: 
+
 `;
+
+	for (const property in turbo.app_version_history) {
+		info += `${property}  -- ${turbo.app_version_history[property]}`;
+	}
+	info += '\n\n-------------------------------------------';
 
 	turbo.setClipboardText(info);
 
