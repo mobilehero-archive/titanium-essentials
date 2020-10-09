@@ -86,6 +86,6 @@ App Install History:
 
 };
 
-
+logger.trace(`📌  you are here → Turbo.Essentials Initialized`);
 module.exports = {};
 
