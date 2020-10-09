@@ -142,7 +142,7 @@ info.isDev = (info.app_deploy_type === 'development');
 // module.exports.id = device.id;
 info.locale = Ti.Platform.locale;
 info.language_code = info.locale.substring(0, 2);
-info.country_code = info.locale.substring(3, 2);
+info.country_code = info.locale.substring(3);
 info.mac_address = Ti.Platform.macaddress;
 // info.manufacturer = _.startCase(_.toLower(Ti.Platform.manufacturer || ''));
 info.device_manufacturer = _.get(manufacturers, Ti.Platform.manufacturer, (Ti.Platform.manufacturer || ''));
