@@ -167,10 +167,13 @@ info.app_version_major = parseInt(info.app_version.split('.')[0], 10) || 0;
 info.app_version_minor = parseInt(info.app_version.split('.')[1], 10) || 0;
 info.app_version_build = parseInt(info.app_version.split('.')[2], 10) || 0;
 
-const app_version_previous = Ti.App.Properties.getString('turbo.app_version_previous');
+let app_version_previous = Ti.App.Properties.getString('turbo.app_version_previous');
 const app_first_installed_version = Ti.App.Properties.getString('turbo.app_first_installed_version');
 const app_version_current = Ti.App.Properties.getString('turbo.app_version_current');
 const app_version_history = Ti.App.Properties.getObject('turbo.app_version_history', {});
+
+// logger.debug(`🦠  app_version_previous: ${JSON.stringify(app_version_previous, null, 2)}`);
+// logger.debug(`🦠  app_version_current: ${JSON.stringify(app_version_current, null, 2)}`);
 
 info.isFirstLaunchEver = !app_first_installed_version;
 info.isFirstLaunchForCurrentVersion = !app_version_history[info.app_version];
@@ -192,6 +195,7 @@ if (info.isFirstLaunchForCurrentVersion) {
 
 if (info.isFirstLaunchAfterUpdate) {
 	Ti.App.Properties.setString('turbo.app_version_previous', app_version_current);
+	app_version_previous = app_version_current;
 }
 
 Ti.App.Properties.setString('turbo.app_version_current', info.app_version);

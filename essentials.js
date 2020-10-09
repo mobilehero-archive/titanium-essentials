@@ -73,13 +73,12 @@ First Launch After Update: ${turbo.isFirstLaunchAfterUpdate}
 First Launch Current Version: ${turbo.isFirstLaunchForCurrentVersion}
 First Launch For Major Version: ${turbo.isFirstLaunchForMajorVersion}
 First Launch For Minor Version: ${turbo.isFirstLaunchForMinorVersion}
-Previous Version: ${turbo.app_version_previous}
-Install History: 
-
+Previous App Version: ${turbo.app_version_previous}
+App Install History: 
 `;
 
 	for (const property in turbo.app_version_history) {
-		info += `${property}  -- ${turbo.app_version_history[property]}`;
+		info += `    ${property}  -- ${turbo.app_version_history[property]}\n`;
 	}
 	info += '\n\n-------------------------------------------';
 
