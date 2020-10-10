@@ -46,7 +46,7 @@
 	"dependencies": {},
 	"devDependencies": {
 		"@titanium/eslint-config": "0.0.17",
-		"eslint": "^7.10.0",
+		"eslint": "^7.11.0",
 		"eslint-plugin-import": "^2.22.1",
 		"eslint-plugin-jsdoc": "^30.6.3",
 		"eslint-plugin-promise": "^4.2.1",
