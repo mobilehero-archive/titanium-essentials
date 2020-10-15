@@ -1,24 +1,31 @@
-# @titanium/essentials
+# @titanium/essentials  <sup><sup><sub><a name="brenton-house" href="#brenton-house">🚀</a></sub></sup></sup> 
 
+![GitHub stars](https://img.shields.io/github/stars/brentonhouse/titanium-essentials?style=social)
+![GitHub forks](https://img.shields.io/github/forks/brentonhouse/titanium-essentials?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/brentonhouse/titanium-essentials?style=social)
 [![@titanium/essentials](https://img.shields.io/npm/v/@titanium/essentials.png)](https://www.npmjs.com/package/@titanium/essentials)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=brentonhouse/titanium-essentials)](https://dependabot.com)
 
 > Essential Toolkit for Titanium Turbo Native Mobile Apps
 
-* [📝 Description](#-description)
-* [🚀 Getting Started](#-getting-started)
-* [✨Features](#features)
+* [�   &nbsp; Description](#--description)
+* [🚀   &nbsp; Getting Started](#--getting-started)
+* [✨  &nbsp; Features](#--features)
 	* [Adds properties to the global `turbo` object](#adds-properties-to-the-global-turbo-object)
-* [📚Learn More](#learn-more)
-* [📣 Feedback](#-feedback)
+* [🎓  &nbsp;  Learn More](#--learn-more)
+	* [📚  &nbsp;  Related projects](#--related-projects)
+		* [🎟️  &nbsp; Modules for Node.js](#️--modules-for-nodejs)
+		* [🎟️  &nbsp; Modules for Node.js and Titanium Mobile](#️--modules-for-nodejs-and-titanium-mobile)
+* [📣  &nbsp; Feedback](#--feedback)
+* [Follow Brenton House](#follow-brenton-house)
 * [©️ Legal](#️-legal)
 
 
-## 📝 Description
+## 📓   &nbsp; Description
 
 Essential Toolkit for Titanium Turbo Native Mobile Apps
 
-## 🚀 Getting Started
+## 🚀   &nbsp; Getting Started
 
 1. Install `@titanium/essentials` in root of project
 
@@ -32,7 +39,7 @@ npm install @titanium/essentials
 require('@titanium/essentials');
 ```
 
-## ✨Features
+## ✨  &nbsp; Features
 
 ### Adds properties to the global `turbo` object
 
@@ -132,14 +139,50 @@ require('@titanium/essentials');
 * [x] setClipboardText()
 
 
-## 📚Learn More
+## 🎓  &nbsp;  Learn More
 
 - [@titanium/essentials GitHub Repo](https://github.com/brentonhouse/titanium-essentials)
 - [@titanium/essentials npm page](https://npmjs.com/packages/@titanium/essentials)
 
-## 📣 Feedback
+### 📚  &nbsp;  Related projects
+
+#### 🎟️  &nbsp; Modules for Node.js
+
+
+| project  	|  description 	|  npm	|
+|---	|---  |---	|
+| [@geek/google-sheets](https://www.npmjs.com/package/@geek/google-sheets)  	| Easy way to manage Google Sheets API from Node.js  	| [![@geek/google-sheets](https://img.shields.io/npm/v/@geek/google-sheets.png)](https://www.npmjs.com/package/@geek/google-sheets)      |
+
+
+#### 🎟️  &nbsp; Modules for Node.js and Titanium Mobile
+
+| project  	|  description 	|  npm	|
+|---	|---  |---	|
+| [@geek/cache](https://www.npmjs.com/package/@geek/cache)  	| Caching module for Node.js and Axway Titanium  	| [![@geek/cache](https://img.shields.io/npm/v/@geek/cache.png)](https://www.npmjs.com/package/@geek/cache)      |
+| [@geek/jsonc](https://www.npmjs.com/package/@geek/cache)  	| JSONC and JSON utilities for JavaScript with Node.js and Axway Titanium.  	| [![@geek/jsonc](https://img.shields.io/npm/v/@geek/jsonc.png)](https://www.npmjs.com/package/@geek/jsonc)      |
+|  [@geek/jwt](https://www.npmjs.com/package/@geek/jwt) 	| JWT parser for JavaScript Node.js and Titanium native mobile  |  [![@geek/jwt](https://img.shields.io/npm/v/@geek/jwt.png)](https://www.npmjs.com/package/@geek/jwt)     |
+|  [@geek/logger](https://www.npmjs.com/package/@geek/logger) 	| Logging module for Node.js and Axway Titanium  |   [![@geek/logger](https://img.shields.io/npm/v/@geek/logger.png)](https://www.npmjs.com/package/@geek/logger)        |
+| [@geek/mobile](https://www.npmjs.com/package/@geek/mobile)  	| Toolkit for creating, building, and managing mobile app projects.  	| [![@geek/mobile](https://img.shields.io/npm/v/@geek/mobile.png)](https://www.npmjs.com/package/@geek/mobile)    	|
+|  [@geek/retry](https://www.npmjs.com/package/@geek/retry) 	| Retry JavaScript functions and promises in Node.js and Axway Titanium  |   [![@geek/retry](https://img.shields.io/npm/v/@geek/retry.png)](https://www.npmjs.com/package/@geek/retry)        |
+
+
+
+## 📣  &nbsp; Feedback
 
 Have an idea or a comment?  [Join in the conversation here](https://github.com/brentonhouse/titanium-essentials/issues)! 
+
+
+-----
+
+## Follow Brenton House 
+
+> Follow [`Brenton House`](https://brenton.house) for the latest on great modules and libraries!
+
+[![Twitter Follow](https://img.shields.io/twitter/follow/brentonhouse?label=Follow%20%40brentonhouse%20on%20twitter&style=social)](https://twitter.com/brentonhouse)
+[![LinkedIn Follow](https://img.shields.io/badge/LinkedIn-_Connect_with_%40brentonhouse_-blue?logo=linkedin&style=flat-square)](https://www.linkedin.com/in/brentonhouse/)
+![Github Followers](https://img.shields.io/github/followers/brentonhouse?label=Follow%20%40brentonhouse%20on%20GitHub&style=social)
+
+-----
 
 ## ©️ Legal
 
