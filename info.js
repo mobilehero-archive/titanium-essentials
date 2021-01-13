@@ -3,7 +3,7 @@ const moment = require('moment');
 const logger = require('@geek/logger').createLogger('@titanium/essentials', { meta: { filename: __filename } });
 const devices = require('./devices');
 const manufacturers = require('./manufacturers');
-
+const events = require(`events`).default;
 
 Ti.Platform.batteryMonitoring = true;
 
@@ -264,9 +264,9 @@ Ti.Network.addEventListener('change', e => {
 	info.online = !!e.online;
 
 	logger.debug(`Ti.Network.onChange: ${JSON.stringify(e, null, 2)}`);
-	turbo.events.fire('network::change');
-	info.online && turbo.events.fire('network::online');
-	!info.online && turbo.events.fire('network::offline');
+	events.fire('network::change');
+	info.online && events.fire('network::online');
+	!info.online && events.fire('network::offline');
 });
 
 Ti.Platform.addEventListener('battery', e => {
@@ -293,7 +293,7 @@ Ti.Platform.addEventListener('battery', e => {
 
 	logger.verbose(`🦠  battery status change: ${JSON.stringify(data, null, 2)}`);
 
-	turbo.events.fire('battery::changed', data);
+	events.fire('battery::changed', data);
 });
 
 

@@ -1,21 +1,5 @@
 const logger = require('@geek/logger').createLogger('@titanium/essentials', { meta: { filename: __filename } });
 
-// ---------------------------------------------------------
-//    Configure Event Emitter
-// ---------------------------------------------------------
-if (!turbo.events) {
-	const EventEmitter = require('events');
-	turbo.events = new EventEmitter({
-		wildcard:          true,  // set this to `true` to use wildcards
-		newListener:       true,  // set this to `true` if you want to emit the newListener event
-		removeListener:    true,  // set this to `true` if you want to emit the removeListener event
-		delimiter:         '::',  // the delimiter used to segment namespaces
-		maxListeners:      20,  // the maximum amount of listeners that can be assigned to an event
-		verboseMemoryLeak: false,  // show event name in memory leak message when more than maximum amount of listeners is assigned
-		ignoreErrors:      true, // disable throwing uncaughtException if an error event is emitted and it has no listeners
-	});
-}
-
 _.assign(turbo, require('./info'));
 turbo.feedback = require('./feedback');
 
