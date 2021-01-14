@@ -70,6 +70,49 @@ App Install History:
 
 };
 
+
+// ---------------------------------------------------------
+//    Configure Event Tracker
+// ---------------------------------------------------------
+turbo.tracker = {
+	event: async (name, data = {}) => {
+		await logger.event(name, data);
+	},
+	app_open:                       async () => turbo.tracker.event(`app_open`),
+	app_close:                      async () => turbo.tracker.event(`app_close`),
+	app_resume:                     async () => turbo.tracker.event(`app_resume`),
+	app_resumed:                    async () => turbo.tracker.event(`app_resumed`),
+	app_pause:                      async () => turbo.tracker.event(`app_pause`),
+	app_paused:                     async () => turbo.tracker.event(`app_paused`),
+	app_first_launch_ever:          async () => turbo.tracker.event(`app_first_launch_ever`),
+	app_first_launch_version:       async () => turbo.tracker.event(`app_first_launch_version`),
+	app_first_launch_major_version: async () => turbo.tracker.event(`app_first_launch_major_version`),
+	app_first_launch_minor_version: async () => turbo.tracker.event(`app_first_launch_minor_version`),
+	app_first_launch_update:        async () => turbo.tracker.event(`app_first_launch_update`),
+	app_update_check:               async () => turbo.tracker.event(`app_update_check`),
+	auth_prompt:                    async () => turbo.tracker.event(`auth_prompt`),
+	auth_success:                   async () => turbo.tracker.event(`auth_success`),
+	auth_refresh:                   async () => turbo.tracker.event(`auth_refresh`),
+	auth_signout:                   async () => turbo.tracker.event(`auth_signout`),
+	screen_view:                    async screen_name => turbo.tracker.event(`screen_view`, { screen_name,  event_value: screen_name }),
+	error:                          async error => turbo.tracker.event(`error`, error),
+
+};
+
+turbo.isFirstLaunchEver && turbo.tracker.app_first_launch_ever();
+turbo.isFirstLaunchForCurrentVersion && turbo.tracker.app_first_launch_version({ app_previous_version: turbo.app_version_previous, event_value: turbo.app_version_previous });
+turbo.isFirstLaunchAfterUpdate && turbo.tracker.app_first_launch_update({ app_previous_version: turbo.app_version_previous, event_value: turbo.app_version_previous  });
+turbo.isFirstLaunchForMajorVersion && turbo.tracker.app_first_launch_major_version({ app_previous_version: turbo.app_version_previous, event_value: turbo.app_version  });
+turbo.isFirstLaunchForMinorVersion && turbo.tracker.app_first_launch_minor_version({ app_previous_version: turbo.app_version_previous, event_value: turbo.app_version  });
+
+Ti.App.addEventListener(`close`, turbo.tracker.app_close);
+Ti.App.addEventListener(`resume`, turbo.tracker.app_resume);
+Ti.App.addEventListener(`resumed`, turbo.tracker.app_resumed);
+Ti.App.addEventListener(`pause`, turbo.tracker.app_pause);
+Ti.App.addEventListener(`paused`, turbo.tracker.app_paused);
+
+// #endregion ---[ Configure Event Tracker ]---
+
 logger.trace(`📌  you are here → Turbo.Essentials Initialized`);
 module.exports = {};
 
