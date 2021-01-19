@@ -328,7 +328,26 @@ ux.hasMusicLibraryPermissions = () => {
 	return OS_IOS ? Titanium.Media.hasMusicLibraryPermissions() : true;
 };
 
-ux.hasNotificationsPermissions = async () => {
+ux.USER_NOTIFICATION_AUTHORIZATION_STATUS = {
+
+	NOT_DETERMINED: 0,
+	DENIED:         1,
+	AUTHORIZED:     2,
+	PROVISIONAL:    3,
+	EPHEMERAL:      4,
+};
+
+ux.USER_NOTIFICATION_ALERT_STYLE = {
+
+	NONE:        0,
+	BANNER:      1,
+	AUTHORIZED:  2,
+	PROVISIONAL: 3,
+	EPHEMERAL:   4,
+};
+
+
+ux.getNotificationPermissions = async () => {
 
 	return new Promise(
 		(resolve, reject) => {
@@ -338,7 +357,41 @@ ux.hasNotificationsPermissions = async () => {
 					settings => {
 						// logger.debug(`🦠  settings: ${JSON.stringify(settings, null, 2)}`);
 
-						return resolve([ Titanium.App.iOS.USER_NOTIFICATION_AUTHORIZATION_STATUS_AUTHORIZED, Titanium.App.iOS.USER_NOTIFICATION_AUTHORIZATION_STATUS_PROVISIONAL ].includes(settings.authorizationStatus));
+						return resolve(settings);
+
+					}
+				);
+			} else {
+				return resolve({
+					showPreviewsSetting:             ux.USER_NOTIFICATION_AUTHORIZATION_STATUS.NOT_DETERMINED,
+					badgeSetting:                    ux.USER_NOTIFICATION_AUTHORIZATION_STATUS.NOT_DETERMINED,
+					criticalAlertSetting:            ux.USER_NOTIFICATION_AUTHORIZATION_STATUS.NOT_DETERMINED,
+					authorizationStatus:             ux.USER_NOTIFICATION_AUTHORIZATION_STATUS.AUTHORIZED,
+					soundSetting:                    ux.USER_NOTIFICATION_AUTHORIZATION_STATUS.NOT_DETERMINED,
+					notificationCenterSetting:       ux.USER_NOTIFICATION_AUTHORIZATION_STATUS.NOT_DETERMINED,
+					alertStyle:                      1,
+					lockScreenSetting:               ux.USER_NOTIFICATION_AUTHORIZATION_STATUS.NOT_DETERMINED,
+					alertSetting:                    ux.USER_NOTIFICATION_AUTHORIZATION_STATUS.NOT_DETERMINED,
+					providesAppNotificationSettings: ux.USER_NOTIFICATION_AUTHORIZATION_STATUS.NOT_DETERMINED,
+					carPlaySetting:                  ux.USER_NOTIFICATION_AUTHORIZATION_STATUS.NOT_DETERMINED,
+
+				});
+			}
+		});
+
+};
+
+ux.hasNotificationPermissions = async () => {
+
+	return new Promise(
+		(resolve, reject) => {
+
+			if (OS_IOS) {
+				Ti.App.iOS.UserNotificationCenter.requestUserNotificationSettings(
+					settings => {
+						// logger.debug(`🦠  settings: ${JSON.stringify(settings, null, 2)}`);
+
+						return resolve([ ux.USER_NOTIFICATION_AUTHORIZATION_STATUS.AUTHORIZED, ux.USER_NOTIFICATION_AUTHORIZATION_STATUS.PROVISIONAL, ux.USER_NOTIFICATION_AUTHORIZATION_STATUS.EPHEMERAL ].includes(settings.authorizationStatus));
 
 					}
 				);
