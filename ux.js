@@ -1,3 +1,4 @@
+/* eslint-disable promise/avoid-new */
 // const { observable } = require('@titanium/observer');
 const Alloy = require('/alloy');
 const _ = require('lodash');
@@ -325,6 +326,27 @@ ux.hasPhotoGalleryPermissions = () => {
 
 ux.hasMusicLibraryPermissions = () => {
 	return OS_IOS ? Titanium.Media.hasMusicLibraryPermissions() : true;
+};
+
+ux.hasNotificationsPermissions = async () => {
+
+	return new Promise(
+		(resolve, reject) => {
+
+			if (OS_IOS) {
+				Ti.App.iOS.UserNotificationCenter.requestUserNotificationSettings(
+					settings => {
+						// logger.debug(`🦠  settings: ${JSON.stringify(settings, null, 2)}`);
+
+						return resolve([ Titanium.App.iOS.USER_NOTIFICATION_AUTHORIZATION_STATUS_AUTHORIZED, Titanium.App.iOS.USER_NOTIFICATION_AUTHORIZATION_STATUS_PROVISIONAL ].includes(settings.authorizationStatus));
+
+					}
+				);
+			} else {
+				return resolve(true);
+			}
+		});
+
 };
 
 
