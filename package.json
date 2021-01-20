@@ -52,7 +52,7 @@
 		"eslint-plugin-jsdoc": "^31.0.4",
 		"eslint-plugin-json": "^2.1.2",
 		"eslint-plugin-promise": "^4.2.1",
-		"fs-extra": "^9.0.1"
+		"fs-extra": "^9.1.0"
 	},
 	"peerDependencies": {
 		"@geek/logger": "^1.0.17"
