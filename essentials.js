@@ -2,6 +2,9 @@ const logger = require('@geek/logger').createLogger('@titanium/essentials', { me
 
 const essentials = {};
 
+essentials.events = require(`events`).default;
+
+
 _.assign(essentials, require('./info'));
 _.assign(essentials, require('./ux'));
 essentials.feedback = require('./feedback');
