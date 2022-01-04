@@ -1,6 +1,6 @@
 {
 	"name": "@titanium/essentials",
-	"version": "1.0.33",
+	"version": "1.0.34",
 	"description": "Essential Toolkit for Titanium Turbo Native Mobile Apps",
 	"main": "essentials.js",
 	"scripts": {
@@ -30,7 +30,7 @@
 	"bugs": {
 		"url": "https://github.com/brentonhouse/titanium-essentials/issues"
 	},
-	"homepage": "https://github.com/brentonhouse/titanium-essentials#readme",
+	"homepage": "https://brenton.house/saying-goodbye-to-axway-amplify-titanium-31a44f3671de",
 	"keywords": [
 		"titanium",
 		"mobile",
