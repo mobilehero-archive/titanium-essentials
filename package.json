@@ -1,6 +1,6 @@
 {
 	"name": "@titanium/essentials",
-	"version": "1.0.31",
+	"version": "1.0.32",
 	"description": "Essential Toolkit for Titanium Turbo Native Mobile Apps",
 	"main": "essentials.js",
 	"scripts": {
@@ -42,6 +42,8 @@
 		"android",
 		"iphone",
 		"ipad",
+		"plugin",
+		"api-builder",
 		"axway-amplify",
 		"brenton-house"
 	],
