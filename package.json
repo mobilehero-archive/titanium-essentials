@@ -1,12 +1,12 @@
 {
 	"name": "@titanium/essentials",
-	"version": "1.0.34",
-	"description": "Essential Toolkit for Titanium Turbo Native Mobile Apps",
+	"version": "1.0.35",
+	"description": "Axway Amplify 🚀 Essential Toolkit for Appcelerator Titanium SDK",
 	"main": "essentials.js",
 	"scripts": {
 		"prep": "npm install --ignore-scripts && npm run list",
 		"list": "npm pack && tar -xvzf *.tgz && rm -rf package *.tgz",
-		"prepublishOnly2": "git pull && bump release",
+		"prepublishOnly": "git pull && npm test && npm audit fix && bump insane",
 		"lint": "eslint . --fix",
 		"test": "npm run prep"
 	},
@@ -43,7 +43,13 @@
 		"iphone",
 		"ipad",
 		"plugin",
+		"amplify",
 		"api-builder",
+		"appcelerator-titanium",
+		"titanium-sdk",
+		"titanium-mobile",
+		"titanium-module",
+		"axway-sdk",
 		"axway-amplify",
 		"brenton-house"
 	],
