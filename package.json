@@ -1,18 +1,19 @@
 {
 	"name": "@titanium/essentials",
-	"version": "1.0.35",
-	"description": "Axway Amplify 🚀 Essential Toolkit for Appcelerator Titanium SDK",
+	"version": "1.0.36",
+	"description": "⭐  Axway Amplify Essential Toolkit for Appcelerator Titanium SDK",
 	"main": "essentials.js",
 	"scripts": {
-		"prep": "npm install --ignore-scripts && npm run list",
-		"list": "npm pack && tar -xvzf *.tgz && rm -rf package *.tgz",
-		"prepublishOnly": "git pull && npm test && npm audit fix && bump insane",
 		"lint": "eslint . --fix",
-		"test": "npm run prep"
+		"list": "npm pack && tar -xvzf *.tgz && rm -rf package *.tgz",
+		"prep": "npm install --ignore-scripts && npm run list",
+		"test": "npm run prep",
+		"prepublishOnly": "git pull && npm test && bump insane",
+		"prepublishOnly2": "git pull && npm test && npm audit fix && bump insane"
 	},
 	"repository": {
 		"type": "git",
-		"url": "github:brentonhouse/titanium-essentials"
+		"url": "github:mobilehero-archive/titanium-essentials"
 	},
 	"author": {
 		"name": "Brenton House",
@@ -28,7 +29,7 @@
 	],
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/brentonhouse/titanium-essentials/issues"
+		"url": "https://github.com/mobilehero-archive/titanium-essentials/issues"
 	},
 	"homepage": "https://brenton.house/saying-goodbye-to-axway-amplify-titanium-31a44f3671de",
 	"keywords": [
@@ -42,6 +43,7 @@
 		"android",
 		"iphone",
 		"ipad",
+		"sdk",
 		"plugin",
 		"amplify",
 		"api-builder",
@@ -53,17 +55,40 @@
 		"axway-amplify",
 		"brenton-house"
 	],
-	"dependencies": {},
+	"dependencies": {
+		"@geek/cache": "^1.0.2",
+		"@geek/config": "^0.2.4",
+		"@geek/dotenv": "^0.0.9",
+		"@geek/eslint-config": "^1.0.3",
+		"@geek/jsonc": "^1.0.4",
+		"@geek/jwt": "^1.0.1",
+		"@geek/retry": "^1.0.0",
+		"@geek/spawn": "^0.0.3",
+		"@geek/spinner": "^1.0.0",
+		"@geek/tld": "^2.0.1-1",
+		"@titanium/bluebird": "^3.7.8",
+		"@titanium/errors": "^1.0.5",
+		"@titanium/events": "^1.0.18",
+		"@titanium/eventsource": "^1.0.3",
+		"@titanium/jwt": "^1.0.8",
+		"@titanium/module-copier": "^1.0.13",
+		"@titanium/please": "^1.0.16",
+		"@titanium/polyfill": "^1.0.15",
+		"@titanium/querystring": "^1.0.2",
+		"@titanium/tiapp-xml": "^1.0.11",
+		"@titanium/titanium": "^5.4.5",
+		"@titanium/turbo": "^2.2.22"
+	},
 	"devDependencies": {
-		"@titanium/eslint-config": "0.0.18",
-		"eslint": "^7.17.0",
+		"@titanium/eslint-config": "1.0.8",
+		"eslint": "^8.6.0",
 		"eslint-plugin-import": "^2.25.4",
-		"eslint-plugin-jsdoc": "^31.0.4",
+		"eslint-plugin-jsdoc": "^37.5.1",
 		"eslint-plugin-json": "^3.1.0",
-		"eslint-plugin-promise": "^4.2.1",
+		"eslint-plugin-promise": "^6.0.0",
 		"fs-extra": "^10.0.0"
 	},
 	"peerDependencies": {
-		"@geek/logger": "^1.0.17"
+		"@geek/logger": "^1.0.18"
 	}
 }
