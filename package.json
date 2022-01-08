@@ -1,12 +1,12 @@
 {
 	"name": "@titanium/essentials",
-	"version": "1.0.36",
+	"version": "1.0.37",
 	"description": "⭐  Axway Amplify Essential Toolkit for Appcelerator Titanium SDK",
 	"main": "essentials.js",
 	"scripts": {
 		"lint": "eslint . --fix",
 		"list": "npm pack && tar -xvzf *.tgz && rm -rf package *.tgz",
-		"prep": "npm install --ignore-scripts && npm run list",
+		"prep": "npm install --ignore-scripts",
 		"test": "npm run prep",
 		"prepublishOnly": "git pull && npm test && bump insane",
 		"prepublishOnly2": "git pull && npm test && npm audit fix && bump insane"
