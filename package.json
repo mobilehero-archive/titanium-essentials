@@ -1,6 +1,6 @@
 {
 	"name": "@titanium/essentials",
-	"version": "1.0.41",
+	"version": "1.0.42",
 	"description": "⭐  Axway Amplify Essential Toolkit for Appcelerator Titanium SDK",
 	"main": "essentials.js",
 	"scripts": {
@@ -66,21 +66,21 @@
 		"@geek/spawn": "^0.0.3",
 		"@geek/spinner": "^1.0.0",
 		"@geek/tld": "^2.0.1-1",
-		"@titanium/bluebird": "^3.7.13",
+		"@titanium/bluebird": "^3.7.14",
 		"@titanium/errors": "^1.0.9",
 		"@titanium/events": "^1.0.22",
-		"@titanium/eventsource": "^1.0.8",
-		"@titanium/jwt": "^1.0.12",
+		"@titanium/eventsource": "^1.0.9",
+		"@titanium/jwt": "^1.0.14",
 		"@titanium/module-copier": "^1.0.16",
 		"@titanium/please": "^1.0.19",
-		"@titanium/polyfill": "^1.0.20",
-		"@titanium/querystring": "^1.0.5",
+		"@titanium/polyfill": "^1.0.21",
+		"@titanium/querystring": "^1.0.6",
 		"@titanium/tiapp-xml": "^1.0.18",
 		"@titanium/titanium": "^5.4.13",
-		"@titanium/turbo": "^2.2.30"
+		"@titanium/turbo": "^2.2.31"
 	},
 	"devDependencies": {
-		"@titanium/eslint-config": "1.0.13",
+		"@titanium/eslint-config": "1.0.14",
 		"eslint": "^8.6.0",
 		"eslint-plugin-import": "^2.25.4",
 		"eslint-plugin-jsdoc": "^37.6.1",
